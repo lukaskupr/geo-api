@@ -1,0 +1,25 @@
+version: "3.4"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPOSER_DEV: --dev
+      network: host
+    container_name: geo-api
+    environment:
+      - APPLICATION_ENV=prod
+      - PROJECT_ID=geo-api
+      - EXTERNAL_OSM_URL=https://nominatim.openstreetmap.org
+      - RR_NUM_WORKERS=1
+      - RR_WORKER_MAX_MEMORY=60
+      - RR_WORKER_TTL=24h
+      - RR_WORKER_IDLE_TTL=300s
+      - RR_WORKER_EXEC_TTL=10s
+    ports:
+      - "8999:80"
+    volumes:
+      - ./src:/opt/geo-api/src
+      - ./reset.sh:/opt/geo-api/reset.sh

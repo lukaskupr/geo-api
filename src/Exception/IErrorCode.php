@@ -1,0 +1,35 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Exception;
+
+use App\Common\IHttpStatus;
+
+interface IErrorCode
+{
+	const MISSING_CONFIGURATION_VALUE = 1001;
+
+	const INVALID_CONFIGURATION_VALUE_TYPE = 1002;
+
+	const INVALID_JSON_ENCODE_FORMAT = 1003;
+
+	const INVALID_STRING_VALUE = 1004;
+
+	const INVALID_QUERY_PARAMETER = 1005;
+
+	const COORDINATES_WERE_NOT_FOUND = 1006;
+
+	const START_TIME_NOT_INITIALIZED = 1007;
+
+	const UNSUPPORTED_CONTENT_TYPE = 1008;
+
+	const INVALID_JSON_RESPONSE = 1009;
+
+	const LOG_FORBIDDEN_KEY = 1010;
+
+	const MISSING_HEADER_USER_AGENT = 1011;
+
+	const CODE_TO_STATUS_MAPPING = [
+		self::COORDINATES_WERE_NOT_FOUND => IHttpStatus::NOT_FOUND,
+	];
+}

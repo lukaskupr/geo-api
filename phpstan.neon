@@ -1,0 +1,7 @@
+parameters:
+    paths:
+         - src
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - '#Right side of && is always (true|false)#'

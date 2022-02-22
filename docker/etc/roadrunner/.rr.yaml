@@ -1,0 +1,24 @@
+version: '2.7'
+
+http:
+  max_request_size: 1 # max request size 1MB
+
+  address: :80
+  pool:
+    num_workers: ${RR_NUM_WORKERS}
+    supervisor:
+      watch_tick: 10s
+      max_worker_memory: ${RR_WORKER_MAX_MEMORY}
+      ttl: ${RR_WORKER_TTL}
+      idle_ttl: ${RR_WORKER_IDLE_TTL}
+      exec_ttl: ${RR_WORKER_EXEC_TTL}
+
+server:
+  command: "sh /opt/geo-api/src/worker.sh"
+
+rpc:
+  listen: unix:///etc/roadrunner/rr.sock
+
+logs:
+  mode: production
+  level: error
